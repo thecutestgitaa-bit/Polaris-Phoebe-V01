@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from brain import ngobrol
@@ -74,10 +75,11 @@ init_emotion()
 
 @app.route("/")
 def home():
-    return "Phoebe Server Online"
+    return "phoebe server online"
 
-
-app.run(
-    port=5000,
-    debug=False
-)
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False
+    )
